@@ -73,3 +73,8 @@ desc = "Deselect any selection"
 on = "z"
 run = "plugin zoxide"
 desc = "Look at zoxide database"
+
+[[manager.prepend_keymap]]
+on = ["l", "g"]
+run = "plugin lazygit"
+desc = "run lazygit"
