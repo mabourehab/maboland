@@ -6,12 +6,11 @@ ratio = [2, 2, 5]
 
 [plugin]
 prepend_previewers = [
-  { name = "*.md", run = "glow" },
   { mime = "image/*", run = "image" },
   { name = "*.pdf", run = "pdf" },
-  { mime = "text/*", run = "bat" },
   { name = "*/", run = "eza-preview" },
 ]
+
 
 [preview]
 wrap = "yes"
