@@ -1,0 +1,300 @@
+#! /bin/bash
+
+installation_check() {
+  i_lower=$(echo "$i" | tr '[:upper:]' '[:lower:]')
+  echo -e "\n[ TEST ]  Checking if $i is installed..."
+  if rpm -q $i_lower &>/dev/null; then
+    echo -e "[ PASS ]  $i installed."
+  else
+    echo -e "[ FAIL ]  $i not installed.\n[MODIFY]  Installing $i..."
+    if sudo dnf -y install $i_lower &>/dev/null; then
+      echo -e "[ PASS ]  $i installed."
+    else
+      echo -e "[ FAIL ]  Couldn't install $i, try a manual install with:\ndnf install $i_lower"
+      continue
+    fi
+  fi
+}
+
+configuration() {
+  echo -e "[MODIFY]  Configuring $i..."
+  stow -t ~ $i/
+}
+
+Usage() {
+  cat <<EOF
+
+This script expects one argument, which is the path to the directory containing the dotfiles.
+If you do not have this directory please download or clone it from github first.
+
+Example:
+./setup.sh /home/user/dotfiles
+EOF
+}
+
+date_now=$(date +'%Y%m%d_%H:%M:%S')
+
+if [ $# -ne 1 ]; then
+  Usage
+  exit 1
+
+elif [ ! -f ~/.firstsetup ]; then
+  cat <<EOF
+
+It looks like you are running this script for the first time! Here are some things you should know:
+
+This script will install and configure Hyprland including other things such as Neovim, Kitty Terminal and Yazi.
+As a result, new packages will likely get installed. Therefore, you may be prompted for a password for sudo privileges at some points during the setup.
+Some files may be altered or removed. However, when this is needed, the script will have backups in ~/hypr_backups.
+
+Also, big disclaimer, this script is meant to be run on Fedora 40 or higher.
+$(Usage)
+
+Please rerun the script to use it. Enjoy!
+EOF
+  touch ~/.firstsetup &>/dev/null
+  exit 0
+fi
+
+if [ -d "$1" ]; then
+  cd $1 &>/dev/null
+  echo -e "\nUsing dotfiles directory $(pwd)"
+else
+  echo -e "\nThe dotfiles directory you gave does not exist, please supply an existing one."
+  exit 1
+fi
+
+echo -e "\n[ TEST ]  Checking if GNU Stow is installed..."
+if rpm -q stow &>/dev/null; then
+  echo -e "[ PASS ]  GNU Stow installed."
+else
+  echo -e "[ FAIL ]  GNU Stow not installed.\n[MODIFY]  Installing GNU Stow..."
+  if sudo dnf -y install stow &>/dev/null; then
+    echo -e "[ PASS ]  GNU Stow installed."
+  else
+    echo -e "[ FAIL ]  Could not install GNU Stow, try manual install with:\ndnf install stow"
+    exit 1
+  fi
+fi
+
+for i in $(/usr/bin/ls $1 | grep -Ev 'newsetup.md|Vim'); do
+  i_lower=$(echo "$i" | tr '[:upper:]' '[:lower:]')
+  case $i in
+  Bash)
+    echo -e "\n[ TEST ]  Checking if Bashrc is available..."
+    if [ -f ~/.bashrc ]; then
+      echo -e "[ PASS ]  Bashrc available"
+      echo -e "[ TEST ]  Checking if .bashrc.d is being sourced..."
+      if grep bashrc.d ~/.bashrc &>/dev/null; then
+        echo -e "[ PASS ]  .bashrc.d is being sourced."
+      else
+        echo -e "[ FAIL ]  .bashrc.d is not being sourced.\n[MODIFY]  Adding .bashrc.d sourcing..."
+        cat <<EOF >>~/.bashrc
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+unset rc
+EOF
+      fi
+    else
+      echo -e "[ FAIL ]  No bashrc available.\n[MODIFY]  Creating one..."
+      cat <<EOF >>~/.bashrc
+
+# User specific aliases and functions      
+if [ -d ~/.bashrc.d ]; then
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+unset rc
+EOF
+    fi
+    echo -e "\n[MODIFY]  Configuring second bashrc in ~/.bashrc.d/bashrc2..."
+    stow -t ~ Bash/
+    ;;
+  Hyprland)
+    echo -e "\n[ TEST ]  Checking if $i and its dependencies are installed..."
+    sudo dnf copr -y enable solopasha/hyprland &>/dev/null
+    for rpms in hyprland hypridle hyprshot hyprlock hyprpaper hyprpolkitagent blueman playerctl pavucontrol nm-connection-editor network-manager-applet; do
+      if rpm -q "$rpms" &>/dev/null; then
+        echo -e "[ PASS ]  "$rpms" installed."
+      else
+        echo -e "[ FAIL ]  "$rpms" not installed.\n[MODIFY]  Installing "$rpms"..."
+        if sudo dnf -y install "$rpms" &>/dev/null; then
+          echo -e "[ PASS ]  "$rpms" installed."
+        else
+          echo -e "[ FAIL ]  Could not install $rpms, try manual install with:\ndnf -y install $rpms"
+        fi
+      fi
+    done
+    echo -e "[MODIFY]  Configuring "$i"..."
+    stow -t ~ "$i"/
+    ;;
+  Bat)
+    installation_check $i
+    configuration $i
+    /usr/bin/bat cache --build &>/dev/null
+    ;;
+  Backgrounds)
+    echo
+    configuration $i
+    ;;
+  Fonts)
+    echo
+    configuration $i
+    ;;
+  Binaries)
+    echo
+    configuration $i
+    ;;
+  Swaync)
+    echo -e "\n[ TEST ]  Checking if "$i" is installed..."
+    if rpm -q SwayNotificationCenter &>/dev/null; then
+      echo -e "[ PASS ]  "$i" installed."
+      echo -e "[MODIFY]  Configuring "$i"..."
+      stow -t ~ "$i"/
+    else
+      echo -e "[ FAIL ]  "$i" not installed.\n[MODIFY]  Installing "$i"..."
+      sudo dnf -y copr enable erikreider/SwayNotificationCenter &>/dev/null
+      if sudo dnf -y install SwayNotificationCenter &>/dev/null; then
+        echo -e "[ PASS ]  $i installed."
+        echo -e "[MODIFY]  Configuring "$i"..."
+        stow -t ~ "$i"/
+      else
+        echo -e "[ FAIL ]  "$i", try manual install with:\ndnf install SwayNotificationCenter"
+      fi
+    fi
+    ;;
+  NWG-Look)
+    installation_check $i
+    for files in ~/.themes ~/.config/gtk-3.0 ~/.config/gtk-4.0 ~/.config/nwg-look ~/.local/share/themes ~/.local/share/nwg-look; do
+      if ! [ -L "$files" ]; then
+        mkdir -p ~/hypr_backups/From_"$i"/"$date_now" &>/dev/null
+        mv "$files" ~/hypr_backups/From_"$i"/"$date_now" &>/dev/null
+      fi
+    done
+    configuration $i
+    nwg-look -a &>/dev/null
+    ;;
+  Starship)
+    echo -e "\n[ TEST ]  Checking if "$i" is installed..."
+    if which starship &>/dev/null; then
+      echo -e "[ PASS ]  "$i" installed."
+      echo -e "[MODIFY]  Configuring "$i"..."
+      curl -sS https://starship.rs/install.sh >~/starship.sh
+      chmod +x ~/starship.sh
+      ~/starship.sh -y &>/dev/null
+      rm -rf ~/starship.sh &>/dev/null
+      stow -t ~ "$i"/
+    else
+      echo -e "[ FAIL ]  "$i" not installed.\n[MODIFY]  Installing "$i"..."
+      if curl -sS https://starship.rs/install.sh >~/starship.sh; then
+        chmod +x ~/starship.sh
+        ~/starship.sh -y &>/dev/null
+        echo -e "[ PASS ]  $i installed."
+        echo -e "[MODIFY]  Configuring "$i"..."
+        rm -rf ~/starship.sh &>/dev/null
+        stow -t ~ "$i"/
+      else
+        echo -e "[ FAIL ]  Could not install "$i", try manual install with:\ncurl -sS https://starship.rs/install.sh | sh &>/dev/null"
+      fi
+    fi
+    ;;
+  Neovim)
+    echo -e "\n[ TEST ]  Checking if $i is installed..."
+    if rpm -q "$i_lower" &>/dev/null; then
+      echo -e "[ PASS ]  "$i" installed."
+      echo -e "[MODIFY]  Configuring "$i"..."
+      stow -t ~ "$i"/
+    else
+      echo -e "[ FAIL ]  "$i" not installed\n[MODIFY]  Installing $i..."
+      sudo dnf copr enable agriffis/neovim-nightly &>/dev/null
+      if sudo dnf -y install "$i_lower" python3-neovim &>/dev/null; then
+        echo -e "[ PASS ]  $i installed."
+        echo -e "[MODIFY]  Configuring $i..."
+        stow -t ~ "$i"/
+      else
+        echo -e "[ FAIL ]  Could not install $i, try manual install with:\ndnf install $i_lower"
+      fi
+    fi
+    ;;
+  Clipse)
+    echo -e "\n[ TEST ]  Checking if $i is installed..."
+    if rpm -q "$i_lower" &>/dev/null; then
+      echo -e "[ PASS ]  "$i" installed."
+      echo -e "[MODIFY]  Configuring "$i"..."
+      stow -t ~ "$i"/
+    else
+      echo -e "[ FAIL ]  "$i" not installed\n[MODIFY]  Installing $i..."
+      sudo dnf -y copr enable azandure/clipse &>/dev/null
+      if sudo dnf -y install "$i_lower" &>/dev/null; then
+        echo -e "[ PASS ]  $i installed."
+        echo -e "[MODIFY]  Configuring $i..."
+        stow -t ~ "$i"/
+      else
+        echo -e "[ FAIL ]  Could not install $i, try manual install with:\ndnf install $i_lower"
+      fi
+    fi
+    ;;
+  Yazi)
+    echo -e "\n[ TEST ]  Checking if $i and its features are installed..."
+    for rpms in yazi eza fd zoxide fzf; do
+      if which "$rpms" &>/dev/null; then
+        echo -e "[ PASS ]  $rpms installed."
+      else
+        echo -e "[ FAIL ]  $rpms not installed\n[MODIFY]  Installing $rpms..."
+        if [ "$rpms" = "yazi" ]; then
+          wget -c https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip -q -O yazi.zip
+          unzip yazi.zip -d yazi &>/dev/null
+          sudo rm -rf /usr/local/bin/ya /usr/local/bin/yazi &>/dev/null
+          sudo cp yazi/*/ya* /usr/local/bin/
+          rm -rf yazi* &>/dev/null
+        elif [ "$rpms" = "eza" ]; then
+          wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -q -O - | tar xz &>/dev/null
+          sudo rm -rf /usr/local/bin/eza &>/dev/null
+          sudo mv eza /usr/local/bin/ &>/dev/null
+        else
+          sudo dnf -y install $rpms &>/dev/null
+        fi
+      fi
+    done
+    echo -e "[MODIFY]  Configuring $i..."
+    stow -t ~ "$i"/ &>/dev/null
+    ;;
+  RGA)
+    echo -e "\n[ TEST ]  Checking if $i and its dependencies are installed..."
+    for rpms in rga rg pandoc; do
+      if which "$rpms" &>/dev/null; then
+        echo -e "[ PASS ]  $rpms installed."
+      else
+        echo -e "[ FAIL ]  $rpms not installed.\n[MODIFY]  Installing $rpms..."
+        if [ "$rpms" = "rga" ]; then
+          continue
+        else
+          sudo dnf -y install $rpms &>/dev/null
+        fi
+      fi
+    done
+    echo -e "[MODIFY]  Configuring $i..."
+    stow -t ~/ "$i"/ &>/dev/null
+    ;;
+  *)
+    installation_check $i
+    configuration $i
+    ;;
+  esac
+done
+
+echo -e "\nConfiguration complete. Sourcing your bashrc.\nRecommended to also manually source it.\nIf this was your first time running the script, then I suggest you reboot, then pick Hyprland when logging in."
+source ~/.bashrc
+source ~/.bashrc.d/bashrc2
+
+cd - &>/dev/null

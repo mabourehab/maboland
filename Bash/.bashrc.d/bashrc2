@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+##### Variables ####
+export EDITOR=/usr/bin/nvim
+
+#### Terminal ####
+eval "$(starship init bash)" # Set up startship prompt
+eval "$(fzf --bash)"         # Set up fzf key bindings and fuzzy completion
+eval "$(zoxide init bash)"   # Setup zoxide
+shopt -s direxpand
+
+#### fzf Colorscheme ####
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--color=selected-bg:#494d64 \
+--multi"
+
+### System Aliases ####
+alias ssh='kitten ssh '
+# alias ls='ls -a --color=auto --hyperlink=auto '
+alias bat='bat --color=always -pp '
+alias cat='bat'
+alias fzf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {})"'
+alias cd='z '
+alias ls="eza "
+alias vim='nvim '
+
+fgf() {
+  rga -Sl $1 | fzf
+}
+
+#### PS1 ####
+# if [ $UID -eq 0 ]; then
+#   export PS1="\[\e[1;31m\]\u@\[\e[1;35m\]\h \[\e[1;32m\]\W\[\e[31m\]# \[\e[0;97m\]"
+# else
+#   export PS1="\[\e[1;36m\]\u@\[\e[1;35m\]\h \[\e[1;32m\]\W\[\e[36m\]$ \[\e[0;97m\]"
+# fi

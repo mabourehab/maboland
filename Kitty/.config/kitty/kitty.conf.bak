@@ -1,0 +1,54 @@
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# BEGIN_KITTY_THEME
+# Dracula
+include current-theme.conf
+background_opacity 0.85
+# END_KITTY_THEME
+
+# BEGIN_KITTY_FONTS
+font_family      family="JetBrainsMono Nerd Font Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size 12
+# END_KITTY_FONTS
+
+# BEGIN_GENERAL_SETTINGS
+enable_audio_bell no
+copy_on_select yes
+focus_follows_mouse yes
+paste_actions no-op
+# END_GENERAL_SETTINGS
+
+# BEGIN_TAB_BAR
+tab_bar_edge top
+tab_bar_margin_height 0.0 0.0
+tab_bar_style fade
+tab_bar_align left
+# END_TAB_BAR
+
+# BEGIN_TAB_KEYBINDS
+map ctrl+t new_tab
+map ctrl+shift+t set_tab_title
+map ctrl+shift+[ previous_tab
+map ctrl+shift+] next_tab
+map ctrl+shift+tab next_tab
+# END_TAB_KEYBINDS
+
+# BEGIN_WINDOW_KEYBINDS
+enabled_layouts splits
+map ctrl+shift+s launch --cwd=current --location=vsplit
+map ctrl+shift+h launch --cwd=current --location=hsplit
+map ctrl+shift+right neighboring_window right
+map ctrl+shift+left neighboring_window left
+map ctrl+shift+up neighboring_window up
+map ctrl+shift+down neighboring_window down
+
+map ctrl+right resize_window narrower
+map ctrl+left resize_window wider
+map ctrl+up resize_window taller
+map ctrl+down resize_window shorter
+map ctrl+shift+r resize_window reset
+# END_WINDOW_KEYBINDS
+

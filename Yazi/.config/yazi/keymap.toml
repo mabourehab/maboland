@@ -1,0 +1,75 @@
+[[manager.prepend_keymap]]
+on = "!"
+run = 'shell "$SHELL" --block'
+desc = "Open shell here"
+
+[[input.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Cancel input or quit yazi"
+
+
+[[manager.prepend_keymap]]
+on = "n"
+run = "create"
+desc = "Create a new file or directory"
+
+[[manager.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Close tab or the process if only 1 tab"
+
+[[manager.prepend_keymap]]
+on = ["f", "f"]
+run = "plugin fzf"
+desc = "Search for files or directories with fzf"
+
+[[manager.prepend_keymap]]
+on = "D"
+run = "remove --permanently"
+desc = "Remove a file or directory permenently"
+
+[[manager.prepend_keymap]]
+on = ["c", "a"]
+run = ["plugin copy-file-contents"]
+desc = "Copy file contents"
+
+[[manager.prepend_keymap]]
+on = ["f", "g"]
+run = "search --via=rga"
+desc = "Grep through files"
+
+[[manager.prepend_keymap]]
+on = "e"
+run = "plugin eza-preview"
+desc = "Toggle tree/list directory preview"
+
+[[manager.prepend_keymap]]
+on = "p"
+run = "plugin smart-paste"
+desc = "Paste into the hovered directory or CWD"
+
+[[manager.prepend_keymap]]
+on = "o"
+run = "plugin open-with-cmd block"
+desc = "Open with command in the terminal"
+
+[[manager.prepend_keymap]]
+on = ["<Enter>"]
+run = "plugin bypass smart_enter"
+desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory"
+
+[[manager.prepend_keymap]]
+on = "`"
+run = "plugin bunny"
+desc = "Start bunny.yazi"
+
+[[manager.prepend_keymap]]
+on = "<C-Space>"
+run = "toggle_all --state=off"
+desc = "Deselect any selection"
+
+[[manager.prepend_keymap]]
+on = "z"
+run = "plugin zoxide"
+desc = "Look at zoxide database"

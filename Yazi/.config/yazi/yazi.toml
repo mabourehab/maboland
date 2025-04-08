@@ -1,0 +1,20 @@
+[manager]
+sort_by = "alphabetical"
+show_symlink = false
+mouse_events = ["click", "scroll", "move", "drag"]
+ratio = [2, 2, 5]
+
+[plugin]
+prepend_previewers = [
+  { name = "*.md", run = "glow" },
+  { mime = "image/*", run = "image" },
+  { name = "*.pdf", run = "pdf" },
+  { mime = "text/*", run = "bat" },
+  { name = "*/", run = "eza-preview" },
+]
+
+[preview]
+wrap = "yes"
+
+[opener]
+edit = [{ run = '/usr/bin/nvim "$@"', block = true, for = "unix" }]

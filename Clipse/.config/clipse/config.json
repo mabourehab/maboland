@@ -1,0 +1,15 @@
+{
+  "allowDuplicates": false,
+  "historyFile": "clipboard_history.json",
+  "maxHistory": 100,
+  "logFile": "clipse.log",
+  "themeFile": "custom_theme.json",
+  "tempDir": "tmp_files",
+
+  "imageDisplay": {
+    "type": "kitty",
+    "scaleX": 1,
+    "scaleY": 1,
+    "heightCut": 2
+  }
+}
