@@ -1,7 +1,7 @@
 .obsidian/
-dotfiles/Neovim/.config/nvim/lazy-lock.json
-dotfiles/Clipse/.config/clipse/clipboard_history.json
-dotfiles/Clipse/.config/clipse/tmp_files/
-dotfiles/Clipse/.config/clipse/clipse.log
-dotfiles/Fonts/.local/share/fonts/.uuid
-dotfiles/Fonts/.local/share/fonts/*/.uuid
+Neovim/.config/nvim/lazy-lock.json
+Clipse/.config/clipse/clipboard_history.json
+Clipse/.config/clipse/tmp_files/
+Clipse/.config/clipse/clipse.log
+Fonts/.local/share/fonts/.uuid
+Fonts/.local/share/fonts/*/.uuid

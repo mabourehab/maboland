@@ -26,6 +26,7 @@ alias fzf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {}
 alias cd='z '
 alias ls="eza "
 alias vim='nvim '
+alias kc='kitten clipboard '
 
 fgf() {
   rga -Sl $1 | fzf

@@ -55,7 +55,7 @@ run = "plugin open-with-cmd block"
 desc = "Open with command in the terminal"
 
 [[manager.prepend_keymap]]
-on = ["<Enter>"]
+on = "<Enter>"
 run = "plugin bypass smart_enter"
 desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory"
 

@@ -24,11 +24,6 @@ rev = "433cf30"
 hash = "86e0312b01bc5762813c6c1d0517f073"
 
 [[plugin.deps]]
-use = "Rolv-Apneseth/bypass"
-rev = "ecb1f7f"
-hash = "905054b2df08ff79af223e0b6f249fa3"
-
-[[plugin.deps]]
 use = "stelcodes/bunny"
 rev = "49bd059"
 hash = "2adf8bfe95004e63da0201dc0c2f365"
@@ -42,6 +37,11 @@ hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 use = "Lil-Dank/lazygit"
 rev = "7a08a09"
 hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/bypass"
+rev = "2ab6d84"
+hash = "d1b64006aebeb0e6f8d67ff8db850590"
 
 [flavor]
 deps = []
