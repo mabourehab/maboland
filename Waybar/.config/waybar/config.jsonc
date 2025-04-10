@@ -6,7 +6,7 @@
     "tray",
     "bluetooth",
     "group/networking",
-    "group/audio",
+    "pulseaudio",
     "group/power",
     "clock",
     "custom/notification",
@@ -96,8 +96,9 @@
     "format-disconnected": "<span size='13000' foreground='#8bd5ca'> </span>Disconnected",
     "tooltip-format-wifi": "Signal Strength: {signalStrength}%",
     "tooltip-format-ethernet": "{ipaddr}/{cidr} via {gwaddr}",
-    "on-click": "pkill nm-* || nm-applet &",
-    "on-click-right": "nm-connection-editor &",
+    // "on-click": "pkill nm-* || nm-applet &",
+    "on-click": "~/.config/waybar/scripts/rofi-wifi-menu",
+    // "on-click-right": "nm-connection-editor &",
   },
 
   "bluetooth": {
@@ -109,7 +110,8 @@
     "format-device-preference": ["WH-1000XM5", "E3.5BT"],
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias} {device_battery_percentage}%",
-    "on-click": "pkill blueman-* || blueman-manager &",
+    // "on-click": "pkill blueman-* || blueman-manager &",
+    "on-click": "~/.config/waybar/scripts/rofi-bluetooth",
     "on-click-middle": "bluetoothctl disconnect $(bluetoothctl devices Connected | awk '{print $2}')",
   },
 

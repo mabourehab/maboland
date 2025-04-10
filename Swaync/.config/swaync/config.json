@@ -28,24 +28,58 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-  "widgets": ["inhibitors", "title", "dnd", "notifications"] 
+  "widgets": [
+    "menubar#label",
+    "title",
+    "volume",
+    "backlight",
+    "mpris",
+    "notifications"
+  ],
   "widget-config": {
-    "inhibitors": {
-      "text": "Inhibitors",
-      "button-text": "Clear All",
-      "clear-all-button": true
+    "menubar#label": {
+      "menu#power-buttons": {
+        "label": "",
+        "position": "right",
+        "actions": [
+          {
+            "label": "⏼ Shutdown",
+            "command": "systemctl poweroff"
+          },
+          {
+            "label": " Reboot",
+            "command": "systemctl reboot"
+          },
+          {
+            "label": "󰌾 Lock",
+            "command": "hyprlock"
+          },
+          {
+            "label": "󰍃 Logout",
+            "command": "hyprctl dispatch exit"
+          }
+        ]
+      }
     },
     "title": {
-      "text": "Notifications",
+      "text": "",
       "clear-all-button": true,
       "button-text": "Clear All"
     },
     "dnd": {
-      "text": "Do Not Disturb"
+      "text": ""
     },
-    "label": {
-      "max-lines": 5,
-      "text": "Label Text"
+    "backlight": {
+      "label": "󰃠",
+      "device": "intel_backlight",
+      "min": 10
     },
+    "mpris": {
+      "image-size": 90,
+      "image-radius": 15
+    },
+    "volume": {
+      "label": "󰕾"
+    }
   }
 }

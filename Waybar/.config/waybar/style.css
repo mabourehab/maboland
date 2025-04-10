@@ -3,7 +3,7 @@
 * {
   font-family: "JetBrainsMono Nerd Font Mono Bold";
   font-size: 16px;
-  min-height: 0;
+  min-height: 0px;
   font-weight: 600;
 }
 
@@ -17,7 +17,7 @@ window#waybar {
 }
 
 #window {
-  margin: 3px;
+  margin: 8px;
   padding-left: 5px;
   padding-right: 5px;
 }

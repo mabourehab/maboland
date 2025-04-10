@@ -1,7 +1,10 @@
+@define-color button-border #494d64;
+@define-color module-background #363a4f;
+
 * {
   all: unset;
   font-size: 14px;
-  font-family: "Ubuntu Nerd Font";
+  font-family: "JetBrainsMono Nerd Font Mono Bold";
   transition: 200ms;
 }
 
@@ -11,7 +14,7 @@ trough highlight {
 
 scale trough {
   margin: 0rem 1rem;
-  background-color: #363a4f;
+  background-color: @module-background;
   min-height: 8px;
   min-width: 70px;
 }
@@ -21,7 +24,9 @@ slider {
 }
 
 .floating-notifications.background .notification-row .notification-background {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #363a4f;
+  box-shadow:
+    0 0 8px 0 rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px @module-background;
   border-radius: 12.6px;
   margin: 18px;
   background-color: #24273a;
@@ -29,56 +34,107 @@ slider {
   padding: 0;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification {
   padding: 7px;
   border-radius: 12.6px;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification.critical {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification.critical {
   box-shadow: inset 0 0 7px 0 #ed8796;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification .notification-content {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content {
   margin: 7px;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification .notification-content .summary {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .summary {
   color: #cad3f5;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification .notification-content .time {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .time {
   color: #a5adcb;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification .notification-content .body {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .body {
   color: #cad3f5;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > * {
   min-height: 3.4em;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action {
   border-radius: 7px;
   color: #cad3f5;
-  background-color: #363a4f;
-  box-shadow: inset 0 0 0 1px #494d64;
+  background-color: @module-background;
+  box-shadow: inset 0 0 0 1px @border-color;
   margin: 7px;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
-  box-shadow: inset 0 0 0 1px #494d64;
-  background-color: #363a4f;
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:hover {
+  box-shadow: inset 0 0 0 1px @border-color;
+  background-color: @module-background;
   color: #cad3f5;
 }
 
-.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
-  box-shadow: inset 0 0 0 1px #494d64;
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:active {
+  box-shadow: inset 0 0 0 1px @border-color;
   background-color: #7dc4e4;
   color: #cad3f5;
 }
 
-.floating-notifications.background .notification-row .notification-background .close-button {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button {
   margin: 7px;
   padding: 2px;
   border-radius: 6.3px;
@@ -86,18 +142,26 @@ slider {
   background-color: #ed8796;
 }
 
-.floating-notifications.background .notification-row .notification-background .close-button:hover {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button:hover {
   background-color: #ee99a0;
   color: #24273a;
 }
 
-.floating-notifications.background .notification-row .notification-background .close-button:active {
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .close-button:active {
   background-color: #ed8796;
   color: #24273a;
 }
 
 .control-center {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #363a4f;
+  box-shadow:
+    0 0 8px 0 rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px @module-background;
   border-radius: 12.6px;
   margin: 18px;
   background-color: #24273a;
@@ -111,21 +175,23 @@ slider {
 }
 
 .control-center .widget-title button {
-  border-radius: 7px;
-  color: #cad3f5;
-  background-color: #363a4f;
-  box-shadow: inset 0 0 0 1px #494d64;
+  margin: -30px 500px 10px 0px;
+  border-radius: 12px;
+  border: 1px solid @border-color;
+  background-color: @module-background;
+  /* box-shadow: inset 0 0 0 1px @border-color; */
   padding: 8px;
+  font-weight: bold;
 }
 
 .control-center .widget-title button:hover {
-  box-shadow: inset 0 0 0 1px #494d64;
+  box-shadow: inset 0 0 0 1px @border-color;
   background-color: #5b6078;
   color: #cad3f5;
 }
 
 .control-center .widget-title button:active {
-  box-shadow: inset 0 0 0 1px #494d64;
+  box-shadow: inset 0 0 0 1px @border-color;
   background-color: #7dc4e4;
   color: #24273a;
 }
@@ -133,8 +199,8 @@ slider {
 .control-center .notification-row .notification-background {
   border-radius: 7px;
   color: #cad3f5;
-  background-color: #363a4f;
-  box-shadow: inset 0 0 0 1px #494d64;
+  background-color: @module-background;
+  box-shadow: inset 0 0 0 1px @border-color;
   margin-top: 14px;
 }
 
@@ -143,46 +209,91 @@ slider {
   border-radius: 7px;
 }
 
-.control-center .notification-row .notification-background .notification.critical {
+.control-center
+  .notification-row
+  .notification-background
+  .notification.critical {
   box-shadow: inset 0 0 7px 0 #ed8796;
 }
 
-.control-center .notification-row .notification-background .notification .notification-content {
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content {
   margin: 7px;
 }
 
-.control-center .notification-row .notification-background .notification .notification-content .summary {
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .summary {
   color: #cad3f5;
 }
 
-.control-center .notification-row .notification-background .notification .notification-content .time {
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .time {
   color: #a5adcb;
 }
 
-.control-center .notification-row .notification-background .notification .notification-content .body {
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .body {
   color: #cad3f5;
 }
 
-.control-center .notification-row .notification-background .notification > *:last-child > * {
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > * {
   min-height: 3.4em;
 }
 
-.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action {
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action {
   border-radius: 7px;
   color: #cad3f5;
   background-color: #181926;
-  box-shadow: inset 0 0 0 1px #494d64;
+  box-shadow: inset 0 0 0 1px @border-color;
   margin: 7px;
 }
 
-.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
-  box-shadow: inset 0 0 0 1px #494d64;
-  background-color: #363a4f;
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:hover {
+  box-shadow: inset 0 0 0 1px @border-color;
+  background-color: @module-background;
   color: #cad3f5;
 }
 
-.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
-  box-shadow: inset 0 0 0 1px #494d64;
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:active {
+  box-shadow: inset 0 0 0 1px @border-color;
   background-color: #7dc4e4;
   color: #cad3f5;
 }
@@ -204,19 +315,22 @@ slider {
   color: #24273a;
 }
 
-.control-center .notification-row .notification-background .close-button:active {
+.control-center
+  .notification-row
+  .notification-background
+  .close-button:active {
   background-color: #ed8796;
   color: #24273a;
 }
 
 .control-center .notification-row .notification-background:hover {
-  box-shadow: inset 0 0 0 1px #494d64;
+  box-shadow: inset 0 0 0 1px @border-color;
   background-color: #8087a2;
   color: #cad3f5;
 }
 
 .control-center .notification-row .notification-background:active {
-  box-shadow: inset 0 0 0 1px #494d64;
+  box-shadow: inset 0 0 0 1px @border-color;
   background-color: #7dc4e4;
   color: #cad3f5;
 }
@@ -231,71 +345,77 @@ slider {
 }
 
 .control-center-dnd {
-  margin-top: 5px;
-  border-radius: 8px;
-  background: #363a4f;
-  border: 1px solid #494d64;
+  border-radius: 12px;
+  background: #aaafff;
+  border: 10px solid @border-color;
   box-shadow: none;
 }
 
 .control-center-dnd:checked {
-  background: #363a4f;
+  background: @module-background;
 }
 
 .control-center-dnd slider {
-  background: #494d64;
-  border-radius: 8px;
+  background: #494fff;
+  border-radius: 12px;
 }
 
 .widget-dnd {
-  margin: 0px;
+  margin: 10px;
   font-size: 1.1rem;
 }
 
 .widget-dnd > switch {
   font-size: initial;
-  border-radius: 8px;
-  background: #363a4f;
-  border: 1px solid #494d64;
+  border-radius: 12px;
+  background: @module-background;
+  border: 2px solid @border-color;
   box-shadow: none;
 }
 
 .widget-dnd > switch:checked {
-  background: #363a4f;
+  background: @module-background;
 }
 
 .widget-dnd > switch slider {
-  background: #494d64;
+  background: @border-color;
   border-radius: 8px;
-  border: 1px solid #6e738d;
+  border: 2px solid #6e738d;
 }
 
 .widget-mpris .widget-mpris-player {
-  background: #363a4f;
-  padding: 7px;
+  background: @module-background;
+  padding: 15px;
+  border: 1px solid @border-color;
+  border-radius: 12px;
+  /* margin-top: 15px; */
+  margin: 10px 0px 5px 0px;
+  /* margin: 5px; */
 }
 
 .widget-mpris .widget-mpris-title {
+  font-weight: bold;
   font-size: 1.2rem;
 }
 
 .widget-mpris .widget-mpris-subtitle {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .widget-menubar > box > .menu-button-bar > button > label {
-  font-size: 3rem;
-  padding: 0.5rem 2rem;
-}
-
-.widget-menubar > box > .menu-button-bar > :last-child {
-  color: #ed8796;
+  font-size: 1.2rem;
+  margin-top: -7px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 12px;
+  background: transparent;
+  /* padding: 0.5rem 2rem; */
 }
 
 .power-buttons button:hover,
 .powermode-buttons button:hover,
 .screenshot-buttons button:hover {
-  background: #363a4f;
+  background: @module-background;
 }
 
 .control-center .widget-label > label {
@@ -312,25 +432,47 @@ slider {
 }
 
 .widget-volume {
-  padding-top: 1rem;
+  padding: 8px 8px 4px 8px;
+  /* margin: 8px 8px 0px 8px; */
+  margin: 5px 0px 0px 0px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-top: 1px solid @border-color;
+  border-right: 1px solid @border-color;
+  border-left: 1px solid @border-color;
+  background: @module-background;
 }
 
 .widget-volume label {
   font-size: 1.5rem;
-  color: #7dc4e4;
+  color: #cad3f5;
 }
 
 .widget-volume trough highlight {
-  background: #7dc4e4;
+  background: #cad3f5;
+  border-radius: 12px;
+}
+
+.widget-backlight {
+  padding: 4px 8px 8px 8px;
+  /* margin: 0px 8px 8px 8px; */
+  margin: 0px 0px 5px 0px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom: 1px solid @border-color;
+  border-right: 1px solid @border-color;
+  border-left: 1px solid @border-color;
+  background: @module-background;
 }
 
 .widget-backlight trough highlight {
-  background: #eed49f;
+  background: #cad3f5;
+  border-radius: 12px;
 }
 
 .widget-backlight label {
   font-size: 1.5rem;
-  color: #eed49f;
+  color: #cad3f5;
 }
 
 .widget-backlight .KB {
