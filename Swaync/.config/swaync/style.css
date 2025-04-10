@@ -9,7 +9,7 @@
 }
 
 trough highlight {
-  background: #cad3f5;
+  background: #fffffd;
 }
 
 scale trough {
@@ -20,7 +20,7 @@ scale trough {
 }
 
 slider {
-  background-color: #8aadf4;
+  background-color: #ffffff;
 }
 
 .floating-notifications.background .notification-row .notification-background {
@@ -162,25 +162,25 @@ slider {
   box-shadow:
     0 0 8px 0 rgba(0, 0, 0, 0.8),
     inset 0 0 0 1px @module-background;
-  border-radius: 12.6px;
-  margin: 18px;
+  border-radius: 10px;
+  margin: 10px;
   background-color: #24273a;
   color: #cad3f5;
   padding: 14px;
+  border: 2px solid @border-color;
 }
 
 .control-center .widget-title > label {
   color: #cad3f5;
-  font-size: 1.3em;
+  font-size: 1.4em;
 }
 
 .control-center .widget-title button {
-  margin: -30px 500px 10px 0px;
-  border-radius: 12px;
+  margin: -45px 500px 10px 0px;
+  border-radius: 20px;
   border: 1px solid @border-color;
   background-color: @module-background;
-  /* box-shadow: inset 0 0 0 1px @border-color; */
-  padding: 8px;
+  padding: 10px;
   font-weight: bold;
 }
 
@@ -387,7 +387,7 @@ slider {
   background: @module-background;
   padding: 15px;
   border: 1px solid @border-color;
-  border-radius: 12px;
+  border-radius: 20px;
   /* margin-top: 15px; */
   margin: 10px 0px 5px 0px;
   /* margin: 5px; */
@@ -403,21 +403,29 @@ slider {
 }
 
 .widget-menubar > box > .menu-button-bar > button > label {
-  font-size: 1.2rem;
-  margin-top: -7px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border-radius: 12px;
+  font-size: 1.3rem;
+  margin: 0px 7px 5px 0px;
   background: transparent;
   /* padding: 0.5rem 2rem; */
 }
 
-.power-buttons button:hover,
-.powermode-buttons button:hover,
-.screenshot-buttons button:hover {
-  background: @module-background;
+.power-buttons {
+  background-color: transparent;
+  padding: 5px 0px 5px 0px;
+  margin: 0px 8px 0px 8px;
+  border-radius: 20px;
 }
 
+.power-buttons > button {
+  background: @modules-background;
+  border: none;
+}
+
+.power-buttons > button:hover {
+  background: @button-border;
+  border-radius: 20px;
+  margin: 0px 230px 0px 230px;
+}
 .control-center .widget-label > label {
   color: #cad3f5;
   font-size: 2rem;
@@ -432,15 +440,12 @@ slider {
 }
 
 .widget-volume {
-  padding: 8px 8px 4px 8px;
+  padding: 3px 5px 3px 10px;
   /* margin: 8px 8px 0px 8px; */
-  margin: 5px 0px 0px 0px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-top: 1px solid @border-color;
-  border-right: 1px solid @border-color;
-  border-left: 1px solid @border-color;
-  background: @module-background;
+  margin: 0px 0px 5px 0px;
+  border-radius: 20px;
+  border: 1px solid @border-color;
+  background-color: @module-background;
 }
 
 .widget-volume label {
@@ -450,24 +455,21 @@ slider {
 
 .widget-volume trough highlight {
   background: #cad3f5;
-  border-radius: 12px;
+  color: #cad3f5;
+  border-radius: 20px;
 }
 
 .widget-backlight {
-  padding: 4px 8px 8px 8px;
-  /* margin: 0px 8px 8px 8px; */
   margin: 0px 0px 5px 0px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  border-bottom: 1px solid @border-color;
-  border-right: 1px solid @border-color;
-  border-left: 1px solid @border-color;
+  padding: 3px 5px 3px 10px;
+  border-radius: 20px;
+  border: 1px solid @border-color;
   background: @module-background;
 }
 
 .widget-backlight trough highlight {
   background: #cad3f5;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
 .widget-backlight label {
