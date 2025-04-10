@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.62
+hotspot_y = 0.42
+
+define_size = 24, ne-resize_000.png, 50
+define_size = 30, ne-resize_001.png, 50
+define_size = 36, ne-resize_002.png, 50
+define_size = 48, ne-resize_003.png, 50
+define_size = 72, ne-resize_004.png, 50
+define_size = 96, ne-resize_005.png, 50
+
+define_override = top_right_corner

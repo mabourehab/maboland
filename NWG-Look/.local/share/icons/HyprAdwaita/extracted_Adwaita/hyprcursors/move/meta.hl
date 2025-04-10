@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.50
+hotspot_y = 0.46
+
+define_size = 24, move_000.png, 50
+define_size = 30, move_001.png, 50
+define_size = 36, move_002.png, 50
+define_size = 48, move_003.png, 50
+define_size = 72, move_004.png, 50
+define_size = 96, move_005.png, 50
+
+define_override = fleur

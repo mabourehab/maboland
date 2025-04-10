@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.79
+hotspot_y = 0.54
+
+define_size = 24, e-resize_000.png, 50
+define_size = 30, e-resize_001.png, 50
+define_size = 36, e-resize_002.png, 50
+define_size = 48, e-resize_003.png, 50
+define_size = 72, e-resize_004.png, 50
+define_size = 96, e-resize_005.png, 50
+
+define_override = right_side

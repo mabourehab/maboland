@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.46
+hotspot_y = 0.08
+
+define_size = 24, grab_000.png, 50
+define_size = 30, grab_001.png, 50
+define_size = 36, grab_002.png, 50
+define_size = 48, grab_003.png, 50
+define_size = 72, grab_004.png, 50
+define_size = 96, grab_005.png, 50
+
+define_override = hand1

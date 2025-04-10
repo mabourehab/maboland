@@ -1,0 +1,11 @@
+resize_algorithm = none
+hotspot_x = 0.12
+hotspot_y = 0.04
+
+define_size = 24, no-drop_000.png, 50
+define_size = 30, no-drop_001.png, 50
+define_size = 36, no-drop_002.png, 50
+define_size = 48, no-drop_003.png, 50
+define_size = 72, no-drop_004.png, 50
+define_size = 96, no-drop_005.png, 50
+

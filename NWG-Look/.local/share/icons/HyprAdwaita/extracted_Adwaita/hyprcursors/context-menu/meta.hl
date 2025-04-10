@@ -1,0 +1,11 @@
+resize_algorithm = none
+hotspot_x = 0.12
+hotspot_y = 0.04
+
+define_size = 24, context-menu_000.png, 50
+define_size = 30, context-menu_001.png, 50
+define_size = 36, context-menu_002.png, 50
+define_size = 48, context-menu_003.png, 50
+define_size = 72, context-menu_004.png, 50
+define_size = 96, context-menu_005.png, 50
+

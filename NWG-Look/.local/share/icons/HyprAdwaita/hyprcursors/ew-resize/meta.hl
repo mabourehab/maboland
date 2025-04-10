@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.50
+hotspot_y = 0.50
+
+define_size = 24, ew-resize_000.png, 50
+define_size = 30, ew-resize_001.png, 50
+define_size = 36, ew-resize_002.png, 50
+define_size = 48, ew-resize_003.png, 50
+define_size = 72, ew-resize_004.png, 50
+define_size = 96, ew-resize_005.png, 50
+
+define_override = sb_h_double_arrow

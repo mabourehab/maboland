@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.29
+hotspot_y = 0.21
+
+define_size = 24, pointer_000.png, 50
+define_size = 30, pointer_001.png, 50
+define_size = 36, pointer_002.png, 50
+define_size = 48, pointer_003.png, 50
+define_size = 72, pointer_004.png, 50
+define_size = 96, pointer_005.png, 50
+
+define_override = hand2

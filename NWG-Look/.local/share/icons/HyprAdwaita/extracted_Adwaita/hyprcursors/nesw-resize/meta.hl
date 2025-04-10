@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.46
+hotspot_y = 0.46
+
+define_size = 24, nesw-resize_000.png, 50
+define_size = 30, nesw-resize_001.png, 50
+define_size = 36, nesw-resize_002.png, 50
+define_size = 48, nesw-resize_003.png, 50
+define_size = 72, nesw-resize_004.png, 50
+define_size = 96, nesw-resize_005.png, 50
+
+define_override = fd_double_arrow

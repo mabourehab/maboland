@@ -1,0 +1,11 @@
+resize_algorithm = none
+hotspot_x = 0.75
+hotspot_y = 0.21
+
+define_size = 24, alias_000.png, 50
+define_size = 30, alias_001.png, 50
+define_size = 36, alias_002.png, 50
+define_size = 48, alias_003.png, 50
+define_size = 72, alias_004.png, 50
+define_size = 96, alias_005.png, 50
+

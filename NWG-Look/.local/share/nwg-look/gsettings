@@ -2,7 +2,7 @@
 gtk-theme=catppuccin-macchiato-mauve-standard+default
 icon-theme=breeze-dark
 font-name=Cantarell 12
-cursor-theme=catppuccin-macchiato-dark-cursors
+cursor-theme=Adwaita
 cursor-size=24
 toolbar-style=both-horiz
 toolbar-icons-size=large

@@ -1,0 +1,11 @@
+resize_algorithm = none
+hotspot_x = 0.46
+hotspot_y = 0.50
+
+define_size = 24, X_cursor_000.png, 50
+define_size = 30, X_cursor_001.png, 50
+define_size = 36, X_cursor_002.png, 50
+define_size = 48, X_cursor_003.png, 50
+define_size = 72, X_cursor_004.png, 50
+define_size = 96, X_cursor_005.png, 50
+
