@@ -6,6 +6,7 @@ ratio = [2, 2, 5]
 
 [plugin]
 prepend_previewers = [
+  { mime = "text/*", run = "bat" },
   { name = "*.md", run = "glow" },
   { mime = "image/*", run = "image" },
   { name = "*.pdf", run = "pdf" },
