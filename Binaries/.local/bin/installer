@@ -198,7 +198,7 @@ EOF
       echo -e "[ FAIL ]  "$i" not installed.\n[MODIFY]  Installing "$i"..."
       if curl -sS https://starship.rs/install.sh >~/starship.sh; then
         chmod +x ~/starship.sh
-        ~/starship.sh -y &>/dev/null
+        sudo ~/starship.sh -y &>/dev/null
         echo -e "[ PASS ]  $i installed."
         echo -e "[MODIFY]  Configuring "$i"..."
         rm -rf ~/starship.sh &>/dev/null
@@ -246,7 +246,7 @@ EOF
     ;;
   Yazi)
     echo -e "\n[ TEST ]  Checking if $i and its features are installed..."
-    for rpms in yazi eza fd zoxide fzf; do
+    for rpms in yazi eza fd lazygit zoxide fzf; do
       if which "$rpms" &>/dev/null; then
         echo -e "[ PASS ]  $rpms installed."
       else
@@ -261,8 +261,11 @@ EOF
           wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -q -O - | tar xz &>/dev/null
           sudo rm -rf /usr/local/bin/eza &>/dev/null
           sudo mv eza /usr/local/bin/ &>/dev/null
+        elif [ "$rpms" = "lazygit" ]; then
+          sudo sudo dnf copr enable atim/lazygit -y &>/dev/null
+          sudo sudo dnf -y install $rpms &>/dev/null
         else
-          sudo dnf -y install $rpms &>/dev/null
+          sudo sudo dnf -y install $rpms &>/dev/null
         fi
       fi
     done
