@@ -1,18 +1,28 @@
-# 🐰 bunny.yazi
+# bunny.yazi 🐰
 
 *🩷 Hop around your filesystem 🩷*
 
-This is an intentionally simple directory bookmark plugin for [yazi](https://github.com/sxyazi/yazi).
+This is a bookmark plugin for [yazi](https://github.com/sxyazi/yazi) which augments the builtin bookmarking abilities into a single menu of `cd` powers designed with user experience (and cuteness) in mind. Bookmarks are referred to as *hops* because users should always feel adorable while using their terminal.
 
-- Define bookmarks (aka **hops**) in lua
-- Change directory via key or fuzzy search with [fzf](https://github.com/junegunn/fzf) or any other compatible program
-- Mark a directory (one at a time) for hopping quickly
-- Single menu for all functionality, therefore only one keymap is required
-- No filesystem changes whatsoever
+## Features
 
-<img src="https://i.imgur.com/3a47LI8.png" alt="bunny.yazi menu"/>
+- Create persistent hops in your `init.lua` config file (lowercase letters only)
+- Create ephemeral hops while using yazi (uppercase letters only)
+- Hop to any directory open in another tab
+- Hop back to previous directory (history is associated with tab number)
+- Hop by fuzzy searching available hops with [fzf](https://github.com/junegunn/fzf) or similar program
+- Single menu for all functionality, therefore only one keymap is required in your `keymap.toml` file
+- Hands off: no reads or writes to your filesystem, all state is kept in memory
+
+<img src="https://i.imgur.com/9OKQJUT.png" alt="bunny.yazi menu open in a terminal"/>
 
 ## Installation
+
+### With `git`
+
+```sh
+git clone https://github.com/stelcodes/bunny.yazi ~/.config/yazi/plugins/bunny.yazi
+```
 
 ### With `yapack`
 
@@ -35,12 +45,12 @@ inputs = {
 Home Manager config:
 ```nix
 programs.yazi = {
-  plugins.bunny = builtins.toString inputs.bunny-yazi;
+  plugins.bunny = "${inputs.bunny-yazi}";
   initLua = ''
     require("bunny"):setup({ ... })
   '';
   keymap.manager.prepend_keymap = [
-    { on = "'"; run = "plugin bunny"; desc = "Start bunny.yazi"; }
+    { on = ";"; run = "plugin bunny"; desc = "Start bunny.yazi"; }
   ];
 };
 ```
@@ -48,22 +58,25 @@ programs.yazi = {
 ## Configuration
 `~/.config/yazi/init.lua`:
 ```lua
-local home = os.getenv("HOME")
 require("bunny"):setup({
   hops = {
-    { tag = "home", path = home, key = "h" },
-    { tag = "nix-store", path = "/nix/store", key = "n" },
-    { tag = "nix-config", path = home.."/.config/nix", key = "c" },
-    { tag = "config", path = home.."/.config", key = "C" },
-    { tag = "local", path = home.."/.local", key = "l" },
-    { tag = "tmp-home", path = home.."/tmp", key = "t" },
-    { tag = "tmp", path = "/tmp", key = "T" },
-    { tag = "downloads", path = home.."/downloads", key = "d" },
-    { tag = "music", path = home.."/music", key = "m" },
-    { tag = "rekordbox", path = home.."/music/dj-tools/rekordbox", key = "r" },
+    { key = "r",          path = "/",                                    },
+    { key = "v",          path = "/var",                                 },
+    { key = "t",          path = "/tmp",                                 },
+    { key = "n",          path = "/nix/store",     desc = "Nix store"    },
+    { key = { "h", "h" }, path = "~",              desc = "Home"         },
+    { key = { "h", "m" }, path = "~/Music",        desc = "Music"        },
+    { key = { "h", "d" }, path = "~/Documents",    desc = "Documents"    },
+    { key = { "h", "k" }, path = "~/Desktop",      desc = "Desktop"      },
+    { key = "c",          path = "~/.config",      desc = "Config files" },
+    { key = { "l", "s" }, path = "~/.local/share", desc = "Local share"  },
+    { key = { "l", "b" }, path = "~/.local/bin",   desc = "Local bin"    },
+    { key = { "l", "t" }, path = "~/.local/state", desc = "Local state"  },
+    -- key and path attributes are required, desc is optional
   },
-  notify = true, -- notify after hopping, default is false
-  fuzzy_cmd = "sk", -- fuzzy searching command, default is fzf
+  desc_strategy = "path", -- If desc isn't present, use "path" or "filename", default is "path"
+  notify = false, -- Notify after hopping, default is false
+  fuzzy_cmd = "fzf", -- Fuzzy searching command, default is "fzf"
 })
 ```
 
@@ -71,7 +84,7 @@ require("bunny"):setup({
 ```toml
 [[manager.prepend_keymap]]
 desc = "Start bunny.yazi"
-on = "'"
+on = ";"
 run = "plugin bunny"
 ```
 
