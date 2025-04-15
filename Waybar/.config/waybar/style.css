@@ -91,9 +91,9 @@ button:hover {
 }
 
 #custom-notification {
-  color: @flamingo;
+  color: @text;
   padding-right: 10px;
-  border-bottom: 2px solid @flamingo;
+  border-bottom: 2px solid @text;
   margin-left: 5px;
 }
 
