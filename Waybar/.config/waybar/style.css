@@ -59,6 +59,7 @@ button:hover {
 
 #pulseaudio,
 #pulseaudio-slider,
+/* #language, */
 #group-audio,
 #custom-vpn,
 #clock,
@@ -239,3 +240,8 @@ button:hover {
   opacity: 1;
   border-radius: 15px;
 }
+
+/* #language { */
+/*   color: @text; */
+/*   border-bottom: 2px solid currentcolor; */
+/* } */

@@ -4,6 +4,7 @@
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "tray",
+    // "hyprland/language",
     "bluetooth",
     "group/networking",
     "pulseaudio",
@@ -182,5 +183,8 @@
     "format": "{title}",
     "separate-outputs": true,
     "icon": true,
+  },
+  "hyprland/language": {
+    "format": "{short}{variant}",
   },
 }
