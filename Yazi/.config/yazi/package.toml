@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "c070754"
-hash = "ebe49da58741aa3bf06c49ee394e0a5a"
+rev = "6fde3b2"
+hash = "7ddb7a790746fd91ecdd0350cc5a5d8c"
 
 [[plugin.deps]]
 use = "AnirudhG07/plugins-yazi:copy-file-contents"
@@ -25,7 +25,7 @@ hash = "22d9e6f72230be88ab322040626623a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b12a9ab"
+rev = "864a021"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
@@ -35,12 +35,12 @@ hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/bypass"
-rev = "2ab6d84"
-hash = "d1b64006aebeb0e6f8d67ff8db850590"
+rev = "17e8652"
+hash = "637979a5bf01d9a1c2ad64aad7d1a0e9"
 
 [[plugin.deps]]
 use = "Reledia/glow"
-rev = "a1711f1"
+rev = "2da96e3"
 hash = "f9ee1436e3b853508d87f7d49dce56e6"
 
 [flavor]

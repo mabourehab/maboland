@@ -2,6 +2,7 @@
 #
 ##### Variables ####
 export EDITOR=/usr/bin/nvim
+export GLOW_STYLE="$HOME/.config/glow/catppuccin-macchiato.json"
 
 #### Terminal ####
 eval "$(starship init bash)" # Set up startship prompt
@@ -18,7 +19,7 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 ### System Aliases ####
-alias ssh='kitten ssh '
+alias kssh='kitten ssh '
 # alias ls='ls -a --color=auto --hyperlink=auto '
 alias bat='bat --color=always -pp '
 alias cat='bat'

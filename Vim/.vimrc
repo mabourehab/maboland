@@ -44,7 +44,6 @@ set smartcase
 "the elflord colorscheme. Also settings for the search highlight colors.
 set incsearch
 set hlsearch
-set termguicolors                
 syntax enable
 hi Search ctermbg=yellow ctermfg=black
 
