@@ -77,7 +77,7 @@ else
   fi
 fi
 
-for i in $(/usr/bin/ls $1 | grep -Ev 'newsetup.md|Vim'); do
+for i in $(/usr/bin/ls $1 | grep -Ev 'README.md'); do
   i_lower=$(echo "$i" | tr '[:upper:]' '[:lower:]')
   case $i in
   Bash)
@@ -205,24 +205,6 @@ EOF
         stow -t ~ "$i"/
       else
         echo -e "[ FAIL ]  Could not install "$i", try manual install with:\ncurl -sS https://starship.rs/install.sh | sh &>/dev/null"
-      fi
-    fi
-    ;;
-  Neovim)
-    echo -e "\n[ TEST ]  Checking if $i is installed..."
-    if rpm -q "$i_lower" &>/dev/null; then
-      echo -e "[ PASS ]  "$i" installed."
-      echo -e "[MODIFY]  Configuring "$i"..."
-      stow -t ~ "$i"/
-    else
-      echo -e "[ FAIL ]  "$i" not installed\n[MODIFY]  Installing $i..."
-      sudo dnf copr enable agriffis/neovim-nightly &>/dev/null
-      if sudo dnf -y install "$i_lower" python3-neovim &>/dev/null; then
-        echo -e "[ PASS ]  $i installed."
-        echo -e "[MODIFY]  Configuring $i..."
-        stow -t ~ "$i"/
-      else
-        echo -e "[ FAIL ]  Could not install $i, try manual install with:\ndnf install $i_lower"
       fi
     fi
     ;;

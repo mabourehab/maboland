@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "bashls", "taplo" },
+				ensure_installed = { "lua_ls", "bashls" },
 			})
 		end,
 	},
@@ -24,7 +24,7 @@ return {
 		},
 		config = function()
 			require("mason-null-ls").setup({
-				ensure_installed = { "shfmt", "prettier", "mdformat", "stylua" },
+				ensure_installed = { "shfmt", "prettier", "stylua" },
 			})
 		end,
 	},
@@ -58,7 +58,6 @@ return {
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.shfmt,
-					null_ls.builtins.formatting.mdformat,
 					null_ls.builtins.formatting.prettier.with({
 						extra_filetypes = { "toml" },
 					}),
@@ -76,12 +75,12 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					sh = { "shfmt" },
-					markdown = { "mdformat" },
+					markdown = { "prettier" },
 					json = { "prettier" },
 					css = { "prettier" },
 				},
 				format_on_save = {
-					time_ms = 1000,
+					time_ms = 500,
 					lsp_format = "fallback",
 				},
 			})
