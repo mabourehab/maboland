@@ -48,6 +48,9 @@ return {
 					language_name = true,
 					border = "thick",
 				},
+				heading = {
+					backgrounds = {},
+				},
 			})
 		end,
 	},
