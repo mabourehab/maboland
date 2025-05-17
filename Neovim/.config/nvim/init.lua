@@ -66,8 +66,8 @@ vim.keymap.set("n", "<leader><up>", "<C-w><up>", { desc = "Change to Above Windo
 vim.keymap.set("n", "<leader><down>", "<C-w><down>", { desc = "Change to Below Window" })
 
 --- Keybinds for Closing with Neotree
-vim.keymap.set("n", "ZZ", ":Neotree close<CR>:wq<CR>", { desc = "Save & Quit and close Neotree" })
-vim.keymap.set("n", "ZQ", ":Neotree close<CR>:q!<CR>", { desc = "Quit and close Neotree" })
+-- vim.keymap.set("n", "ZZ", ":Neotree close<CR>:wq<CR>", { desc = "Save & Quit and close Neotree" })
+-- vim.keymap.set("n", "ZQ", ":Neotree close<CR>:q!<CR>", { desc = "Quit and close Neotree" })
 
 -- Keybinds for Clipboard in Visual Mode
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to Clipboard" })
@@ -123,12 +123,12 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
-local group = vim.api.nvim_create_augroup("FiletypeColor", { clear = true })
+-- local group = vim.api.nvim_create_augroup("FiletypeColor", { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-		-- Example: Disable nvim-autopairs in markdown
-		require("lualine").setup({ enabled = false })
-	end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "markdown",
+-- 	callback = function()
+-- 		-- Example: Disable nvim-autopairs in markdown
+-- 		require("lualine").setup({ enabled = false })
+-- 	end,
+-- })

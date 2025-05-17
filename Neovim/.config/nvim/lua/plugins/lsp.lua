@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "bashls" },
+				ensure_installed = { "lua_ls", "bashls", "basedpyright" },
 			})
 		end,
 	},
@@ -24,7 +24,7 @@ return {
 		},
 		config = function()
 			require("mason-null-ls").setup({
-				ensure_installed = { "shfmt", "prettier", "stylua" },
+				ensure_installed = { "shfmt", "mdformat", "prettier", "stylua", "black" },
 			})
 		end,
 	},
@@ -32,7 +32,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -41,6 +41,9 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.taplo.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.basedpyright.setup({
 				capabilities = capabilities,
 			})
 
@@ -58,8 +61,21 @@ return {
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.shfmt,
+					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.mdformat,
 					null_ls.builtins.formatting.prettier.with({
 						extra_filetypes = { "toml" },
+						filetypes = {
+							"javascript",
+							"typescript",
+							"css",
+							"scss",
+							"html",
+							"json",
+							"yaml",
+							"graphql",
+							"txt",
+						},
 					}),
 				},
 			})
@@ -75,9 +91,10 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					sh = { "shfmt" },
-					markdown = { "prettier" },
+					markdown = { "mdformat" },
 					json = { "prettier" },
 					css = { "prettier" },
+					python = { "black" },
 				},
 				format_on_save = {
 					time_ms = 500,
