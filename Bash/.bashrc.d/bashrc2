@@ -19,13 +19,11 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 ### System Aliases ####
-alias kssh='kitten ssh '
-# alias ls='ls -a --color=auto --hyperlink=auto '
 alias bat='bat --color=always -pp '
 alias cat='bat'
 alias fzf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {})"'
 alias cd='z '
-alias ls="eza "
+alias ls="eza -g"
 alias vim='nvim '
 alias kc='kitten clipboard '
 
