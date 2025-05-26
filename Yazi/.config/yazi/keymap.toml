@@ -19,9 +19,10 @@ on = "<Esc>"
 run = "close"
 desc = "Close tab or the process if only 1 tab"
 
+
 [[manager.prepend_keymap]]
 on = ["f", "f"]
-run = "plugin fzf"
+run = ["cd ~", "plugin fzf"]
 desc = "Search for files or directories with fzf"
 
 [[manager.prepend_keymap]]
@@ -43,11 +44,6 @@ desc = "Grep through files"
 on = "e"
 run = "plugin eza-preview"
 desc = "Toggle tree/list directory preview"
-
-# [[manager.prepend_keymap]]
-# on = "p"
-# run = "plugin smart-paste"
-# desc = "Paste into the hovered directory or CWD"
 
 [[manager.prepend_keymap]]
 on = "o"
