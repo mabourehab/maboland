@@ -65,10 +65,6 @@ vim.keymap.set("n", "<leader><left>", "<C-w><left>", { desc = "Change to Left Wi
 vim.keymap.set("n", "<leader><up>", "<C-w><up>", { desc = "Change to Above Window" })
 vim.keymap.set("n", "<leader><down>", "<C-w><down>", { desc = "Change to Below Window" })
 
---- Keybinds for Closing with Neotree
--- vim.keymap.set("n", "ZZ", ":Neotree close<CR>:wq<CR>", { desc = "Save & Quit and close Neotree" })
--- vim.keymap.set("n", "ZQ", ":Neotree close<CR>:q!<CR>", { desc = "Quit and close Neotree" })
-
 -- Keybinds for Clipboard in Visual Mode
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to Clipboard" })
 
@@ -76,6 +72,10 @@ vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to Clipboard" })
 vim.keymap.set("n", "<leader>f[", "[s", { desc = "Move to next spelling error" })
 vim.keymap.set("n", "<leader>f]", "]s", { desc = "Move to next spelling error" })
 vim.keymap.set("n", "<leader>fsg", "zg", { desc = "Add word to dictionary" })
+
+-- Keybinds for easier empty line inputs while in normal mode
+vim.keymap.set("n", "<leader>o", ":put _<CR>", { desc = "Add one line below in normal mode" })
+vim.keymap.set("n", "<leader>O", ":put! _<CR>", { desc = "Add one line above in normal mode" })
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

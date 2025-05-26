@@ -87,3 +87,7 @@ inoremap <C-h> <C-o>:noh<CR>
 nnoremap <C-l> zt
 inoremap <C-l> <ESC>zta
 
+"Hotkeys for easier new lines in normal mode
+nnoremap <leader>o :put _<CR>
+nnoremap <leader>O :put! _<CR>
+
