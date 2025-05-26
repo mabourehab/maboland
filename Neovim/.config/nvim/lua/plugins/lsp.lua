@@ -40,9 +40,6 @@ return {
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.taplo.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.basedpyright.setup({
 				capabilities = capabilities,
 			})
