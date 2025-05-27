@@ -10,6 +10,8 @@ $hostname\
 $directory\
 [](fg:teal bg:peach)\
 $git_branch\
+[](fg:peach bg:peach)\
+$python\
 [](fg:peach bg:mauve)\
 $time\
 [ ](fg:mauve)\
@@ -116,3 +118,8 @@ vimcmd_symbol = '[](bold fg:green)'
 vimcmd_replace_one_symbol = '[](bold fg:purple)'
 vimcmd_replace_symbol = '[](bold fg:purple)'
 vimcmd_visual_symbol = '[](bold fg:lavender)'
+
+[python]
+python_binary = ["python3", "python"]
+style = "bg:peach fg:bold base"
+format = "[ $virtualenv ]($style)"
