@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "bashls", "basedpyright" },
+				ensure_installed = { "lua_ls", "bashls", "basedpyright", "ruff" },
 			})
 		end,
 	},
@@ -24,7 +24,7 @@ return {
 		},
 		config = function()
 			require("mason-null-ls").setup({
-				ensure_installed = { "shfmt", "mdformat", "prettier", "stylua", "black" },
+				ensure_installed = { "shfmt", "mdformat", "prettier", "stylua", "ruff" },
 			})
 		end,
 	},
@@ -40,13 +40,16 @@ return {
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.basedpyright.setup({
+			-- lspconfig.basedpyright.setup({
+			-- 	capabilities = capabilities,
+			-- })
+			lspconfig.ruff.setup({
 				capabilities = capabilities,
 			})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "<leader>bh", vim.lsp.buf.hover, { desc = "Show snippet of the object defintion" })
+			vim.keymap.set("n", "<leader>bd", vim.lsp.buf.definition, { desc = "Go to where the object is defined" })
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Show available code actions" })
 		end,
 	},
 	-- none - ls Configuration
@@ -58,11 +61,11 @@ return {
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.shfmt,
-					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.ruff,
 					null_ls.builtins.formatting.mdformat,
 					null_ls.builtins.formatting.prettier.with({
-						extra_filetypes = { "toml" },
 						filetypes = {
+							"toml",
 							"javascript",
 							"typescript",
 							"css",
@@ -91,7 +94,7 @@ return {
 					markdown = { "mdformat" },
 					json = { "prettier" },
 					css = { "prettier" },
-					python = { "black" },
+					python = { "ruff" },
 				},
 				format_on_save = {
 					time_ms = 500,
