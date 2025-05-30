@@ -3,6 +3,7 @@
 ##### Variables ####
 export EDITOR=/usr/bin/nvim
 export GLOW_STYLE="$HOME/.config/glow/catppuccin-macchiato.json"
+export PATH="$PATH:~/go/bin"
 
 #### Terminal ####
 eval "$(starship init bash)" # Set up startship prompt
@@ -10,18 +11,15 @@ eval "$(fzf --bash)"         # Set up fzf key bindings and fuzzy completion
 eval "$(zoxide init bash)"   # Setup zoxide
 shopt -s direxpand
 
-#### fzf Colorscheme ####
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#363a4f,spinner:#f4dbd6,hl:#ed8796 \
---color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
---color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
---color=selected-bg:#494d64 \
---multi"
+#### fzf Setup ####
+export FZF_DEFAULT_OPTS="--color=bg+:#363a4f,spinner:#f4dbd6,hl:#ed8796 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 --color=selected-bg:#494d64 --multi --preview='bat --color=always {}' "
+
+export FZF_DEFAULT_COMMAND="fd --hidden --follow . $HOME"
 
 ### System Aliases ####
 alias bat='bat --color=always -pp '
 alias cat='bat'
-alias fzf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {})"'
+alias fzf="fzf --bind 'enter:become(/usr/bin/nvim {})'"
 alias cd='z '
 alias ls="eza -g"
 alias vim='nvim '
