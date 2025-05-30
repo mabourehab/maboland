@@ -227,12 +227,14 @@ EOF
     if which "$i_lower" &>/dev/null; then
       echo -e "[ PASS ]  "$i" installed."
       echo -e "[MODIFY]  Configuring "$i"..."
+      sudo ln -s ~/go/bin/clipse ~/.local/bin/clipse &>/dev/null
       stow -t ~ "$i"/
     else
       echo -e "[ FAIL ]  "$i" not installed\n[MODIFY]  Installing $i..."
       if sudo go install github.com/savedra1/clipse@v1.1.0 &>/dev/null; then
         echo -e "[ PASS ]  $i installed."
         echo -e "[MODIFY]  Configuring $i..."
+        sudo ln -s ~/go/bin/clipse ~/.local/bin/clipse &>/dev/null
         stow -t ~ "$i"/
       else
         echo -e "[ FAIL ]  Could not install $i, try manual install with:\ngo install github.com/savedra1/clipse@v1.1.0"
