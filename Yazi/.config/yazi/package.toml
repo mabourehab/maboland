@@ -39,9 +39,9 @@ rev = "2da96e3"
 hash = "f9ee1436e3b853508d87f7d49dce56e6"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:smart-enter"
-rev = "c0ad8a3"
-hash = "a7ab702e1ef0c097defbc976ed34c186"
+use = "Rolv-Apneseth/bypass"
+rev = "29a67c4"
+hash = "89fe4541602877243d20f10d33575d42"
 
 [flavor]
 deps = []
