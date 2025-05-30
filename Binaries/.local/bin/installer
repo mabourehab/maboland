@@ -246,11 +246,17 @@ EOF
     for rpms in yazi eza fd lazygit zoxide fzf; do
       if which "$rpms" &>/dev/null; then
         echo -e "[ PASS ]  $rpms installed."
-        wget -c https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip -q -O yazi.zip
-        unzip yazi.zip -d yazi &>/dev/null
-        sudo rm -rf /usr/local/bin/ya /usr/local/bin/yazi &>/dev/null
-        sudo cp yazi/*/ya* /usr/local/bin/
-        rm -rf yazi* &>/dev/null
+        if [ "$rpms" = "yazi" ]; then
+          wget -c https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip -q -O yazi.zip
+          unzip yazi.zip -d yazi &>/dev/null
+          sudo rm -rf /usr/local/bin/ya /usr/local/bin/yazi &>/dev/null
+          sudo cp yazi/*/ya* /usr/local/bin/
+          rm -rf yazi* &>/dev/null
+        elif [ "$rpms" = "eza" ]; then
+          wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -q -O - | tar xz &>/dev/null
+          sudo rm -rf /usr/local/bin/eza &>/dev/null
+          sudo mv eza /usr/local/bin/ &>/dev/null
+        fi
       else
         echo -e "[ FAIL ]  $rpms not installed\n[MODIFY]  Installing $rpms..."
         if [ "$rpms" = "yazi" ]; then
