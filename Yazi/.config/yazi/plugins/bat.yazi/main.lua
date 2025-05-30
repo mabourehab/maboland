@@ -9,7 +9,7 @@ function M:peek(job)
 	end
 
 	local child = Command("bat")
-		:args({
+		:arg({
 			"-pp",
 			"--color",
 			"always",
@@ -70,4 +70,3 @@ function M:seek(job)
 end
 
 return M
-

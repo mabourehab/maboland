@@ -5,8 +5,8 @@ hash = "7ddb7a790746fd91ecdd0350cc5a5d8c"
 
 [[plugin.deps]]
 use = "AnirudhG07/plugins-yazi:copy-file-contents"
-rev = "524c52c"
-hash = "27c50e6bc15c09096505b805b238ade0"
+rev = "49975ae"
+hash = "a61930b827d8f1ef8fa016409de458ed"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
@@ -20,13 +20,13 @@ hash = "86e0312b01bc5762813c6c1d0517f073"
 
 [[plugin.deps]]
 use = "stelcodes/bunny"
-rev = "a64f32a"
-hash = "22d9e6f72230be88ab322040626623a"
+rev = "ea27f37"
+hash = "7956295208401cdbdf2b673b73437edd"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "864a021"
-hash = "1f3dad061209081a6b04dd6ff2cb06c7"
+rev = "c0ad8a3"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
@@ -34,14 +34,14 @@ rev = "7a08a09"
 hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
 
 [[plugin.deps]]
-use = "Rolv-Apneseth/bypass"
-rev = "17e8652"
-hash = "637979a5bf01d9a1c2ad64aad7d1a0e9"
-
-[[plugin.deps]]
 use = "Reledia/glow"
 rev = "2da96e3"
 hash = "f9ee1436e3b853508d87f7d49dce56e6"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "c0ad8a3"
+hash = "a7ab702e1ef0c097defbc976ed34c186"
 
 [flavor]
 deps = []

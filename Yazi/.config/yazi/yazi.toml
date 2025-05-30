@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 sort_by = "alphabetical"
 show_symlink = false
 mouse_events = ["click", "scroll", "move", "drag"]
