@@ -77,6 +77,19 @@ else
   fi
 fi
 
+echo -e "\n[ TEST ]  Checking if Go is installed..."
+if rpm -q golang-bin &>/dev/null; then
+  echo -e "[ PASS ]  Go is installed."
+else
+  echo -e "[ FAIL ]  Go not installed.\n[MODIFY]  Installing Go..."
+  if sudo dnf -y install golang-bin &>/dev/null; then
+    echo -e "[ PASS ]  Go installed."
+  else
+    echo -e "[ FAIL ]  Could not install Go, try manual install with:\ndnf install golang-bin"
+    exit 1
+  fi
+fi
+
 for i in $(/usr/bin/ls $1 | grep -Ev 'README.md'); do
   i_lower=$(echo "$i" | tr '[:upper:]' '[:lower:]')
   case $i in
@@ -210,19 +223,19 @@ EOF
     ;;
   Clipse)
     echo -e "\n[ TEST ]  Checking if $i is installed..."
-    if rpm -q "$i_lower" &>/dev/null; then
+    sudo dnf -y remove clipse &>/dev/null
+    if which "$i_lower" &>/dev/null; then
       echo -e "[ PASS ]  "$i" installed."
       echo -e "[MODIFY]  Configuring "$i"..."
       stow -t ~ "$i"/
     else
       echo -e "[ FAIL ]  "$i" not installed\n[MODIFY]  Installing $i..."
-      sudo dnf -y copr enable azandure/clipse &>/dev/null
-      if sudo dnf -y install "$i_lower" &>/dev/null; then
+      if sudo go install github.com/savedra1/clipse@v1.1.0 &>/dev/null; then
         echo -e "[ PASS ]  $i installed."
         echo -e "[MODIFY]  Configuring $i..."
         stow -t ~ "$i"/
       else
-        echo -e "[ FAIL ]  Could not install $i, try manual install with:\ndnf install $i_lower"
+        echo -e "[ FAIL ]  Could not install $i, try manual install with:\ngo install github.com/savedra1/clipse@v1.1.0"
       fi
     fi
     ;;
@@ -231,6 +244,11 @@ EOF
     for rpms in yazi eza fd lazygit zoxide fzf; do
       if which "$rpms" &>/dev/null; then
         echo -e "[ PASS ]  $rpms installed."
+        wget -c https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip -q -O yazi.zip
+        unzip yazi.zip -d yazi &>/dev/null
+        sudo rm -rf /usr/local/bin/ya /usr/local/bin/yazi &>/dev/null
+        sudo cp yazi/*/ya* /usr/local/bin/
+        rm -rf yazi* &>/dev/null
       else
         echo -e "[ FAIL ]  $rpms not installed\n[MODIFY]  Installing $rpms..."
         if [ "$rpms" = "yazi" ]; then
