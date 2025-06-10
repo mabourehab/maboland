@@ -53,7 +53,7 @@ vim.keymap.set("i", "<C-l>", "<ESC>zta")
 
 --- Keybinds for easier markdown **syntaxing
 vim.keymap.set("i", "<C-b>", "****<left><left>", { desc = "Bold syntax" })
-vim.keymap.set("n", "<C-b>", "ebi**<ESC>e<right>i**<ESC>", { desc = "Bold existing word" })
+-- vim.keymap.set("n", "<C-b>", "ebi**<ESC>e<right>i**<ESC>", { desc = "Bold existing word" })
 vim.keymap.set("i", "<M-b>", "____<left><left>", { desc = "Italic syntax" })
 vim.keymap.set("i", "<C-c>", "```bash<CR><CR>```<up>", { desc = "Bash code block" })
 

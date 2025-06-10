@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "bashls", "basedpyright", "ruff" },
+				ensure_installed = { "lua_ls", "bashls", "basedpyright", "harper_ls" },
 			})
 		end,
 	},
@@ -24,7 +24,7 @@ return {
 		},
 		config = function()
 			require("mason-null-ls").setup({
-				ensure_installed = { "shfmt", "mdformat", "prettier", "stylua", "ruff" },
+				ensure_installed = { "shfmt", "mdformat", "prettier", "stylua", "black" },
 			})
 		end,
 	},
@@ -32,24 +32,22 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
-			})
-			-- lspconfig.basedpyright.setup({
-			-- 	capabilities = capabilities,
-			-- })
-			lspconfig.ruff.setup({
-				capabilities = capabilities,
-			})
+			lspconfig.lua_ls.setup({})
+			lspconfig.bashls.setup({})
+			lspconfig.basedpyright.setup({})
+			lspconfig.harper_ls.setup({})
 
 			vim.keymap.set("n", "<leader>bh", vim.lsp.buf.hover, { desc = "Show snippet of the object defintion" })
 			vim.keymap.set("n", "<leader>bd", vim.lsp.buf.definition, { desc = "Go to where the object is defined" })
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Show available code actions" })
+			vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
+			vim.keymap.set("n", "<leader>d[", function()
+				vim.diagnostic.jump({ count = -vim.v.count1 })
+			end, { desc = "Jump to previous diagnostic" })
+			vim.keymap.set("n", "<leader>d]", function()
+				vim.diagnostic.jump({ count = vim.v.count1 })
+			end, { desc = "Jump to next diagnostic" })
 		end,
 	},
 	-- none - ls Configuration
@@ -59,10 +57,28 @@ return {
 			local null_ls = require("null-ls")
 			null_ls.setup({
 				sources = {
-					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.shfmt,
-					null_ls.builtins.formatting.ruff,
-					null_ls.builtins.formatting.mdformat,
+					null_ls.builtins.formatting.stylua.with({
+						filetypes = {
+							"lua",
+						},
+					}),
+					null_ls.builtins.formatting.shfmt.with({
+						filetypes = {
+							"bash",
+							"sh",
+						},
+					}),
+					null_ls.builtins.formatting.black.with({
+						filetypes = {
+							"python",
+						},
+					}),
+					null_ls.builtins.formatting.mdformat.with({
+						filetypes = {
+							"markdown",
+							"md",
+						},
+					}),
 					null_ls.builtins.formatting.prettier.with({
 						filetypes = {
 							"toml",
@@ -94,7 +110,7 @@ return {
 					markdown = { "mdformat" },
 					json = { "prettier" },
 					css = { "prettier" },
-					python = { "ruff" },
+					python = { "black" },
 				},
 				format_on_save = {
 					time_ms = 500,
